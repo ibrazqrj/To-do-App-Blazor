@@ -1,0 +1,142 @@
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.sidebar {
+    background-image: linear-gradient(180deg, #DE3051 0%, #53020c 70%);
+}
+
+.top-row {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row ::deep a, .top-row ::deep .btn-link {
+        white-space: nowrap;
+        text-decoration: none;
+    }
+
+    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
+        text-decoration: underline;
+    }
+
+    .top-row ::deep a:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
+    .top-row {
+        justify-content: space-between;
+    }
+
+    .top-row ::deep a, .top-row ::deep .btn-link {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page {
+        flex-direction: row;
+    }
+
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row.auth ::deep a:first-child {
+        flex: 1;
+        text-align: right;
+        width: 0;
+    }
+
+    .top-row, article {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+.dropdown {
+    position: relative;
+    width: 50px;
+    filter: url(#goo);
+    display: inline-block;
+}
+
+.dropdown__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+    .dropdown__icon svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+    }
+
+.dropdown__items {
+    position: absolute;
+    right: -25px;
+    top: 50px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    list-style: none;
+    padding: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+}
+
+    .dropdown__items li {
+        padding: 8px;
+        text-align: center;
+    }
+
+    .dropdown__items button {
+        background: none;
+        border: none;
+        color: black;
+        width: 100%;
+        cursor: pointer;
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+        .dropdown__items button:hover {
+            background: #f0f0f0;
+        }
+
+input[type="checkbox"] {
+    display: none;
+}
+
+    input[type="checkbox"]:checked ~ .dropdown__items {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }

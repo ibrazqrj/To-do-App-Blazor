@@ -1,0 +1,212 @@
+﻿.container {
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    width: 400px;
+    max-width: 100%;
+    padding: 50px 30px;
+    border-radius: 24px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+    input:focus, textarea:focus {
+        background: rgba(255, 255, 255, 1);
+        outline: none;
+        border-color: #2f4ad0;
+    }
+
+button {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    background-color: #ee455e;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+    button:hover {
+        letter-spacing: 1px;
+        background-color: #b13749;
+    }
+
+.social-media {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 16px;
+}
+
+    .social-media a {
+        font-size: 20px;
+        color: black;
+        text-decoration: none;
+    }
+
+.container {
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    width: 400px;
+    max-width: 100%;
+    padding: 50px 30px;
+    border-radius: 24px;
+    background: #ffffff;
+    text-align: center; /* Zentriert den Inhalt */
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Zentriert alle Elemente innerhalb des Formulars */
+}
+
+.field {
+    margin-bottom: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Zentriert die Labels und Inputs */
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    text-align: center; /* Zentriert die Label-Texte */
+}
+
+input, textarea {
+    width: 80%; /* Reduziert die Breite für schönere Optik */
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    text-align: center; /* Zentriert den eingegebenen Text */
+}
+
+    input:focus, textarea:focus {
+        background: rgba(255, 255, 255, 1);
+        outline: none;
+        border-color: #2f4ad0;
+    }
+
+button {
+    width: 80%;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    background-color: #ee455e;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+    button:hover {
+        letter-spacing: 1px;
+        background-color: #b13749;
+    }
+
+.checkbox-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Zentriert Checkbox */
+}
+
+h1 {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+
+    h1 span {
+        display: block;
+        font-size: 0.5em;
+        line-height: 1.3;
+    }
+
+    h1 em {
+        font-style: normal;
+        font-weight: 600;
+    }
+
+.twelve h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 160px;
+    text-align: center;
+    margin: auto;
+    white-space: nowrap;
+    padding-bottom: 13px;
+}
+
+    .twelve h1:before {
+        background-color: #c50000;
+        content: '';
+        display: block;
+        height: 3px;
+        width: 75px;
+        margin-bottom: 5px;
+    }
+
+    .twelve h1:after {
+        background-color: #c50000;
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 3px;
+        width: 75px;
+        margin-bottom: 0.25em;
+    }
+
+.cardcenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    height: 80vh;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}

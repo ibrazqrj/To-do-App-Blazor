@@ -1,0 +1,92 @@
+﻿@page "/todos"
+@inherits BaseTodoComponent
+@using BlazorToDoApp.Services
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using BlazorToDoApp.Resources
+@using Microsoft.Extensions.Localization
+@inject IAccessTokenProvider TokenProvider
+@inject ISnackbar Snackbar
+
+@* Required *@
+<MudThemeProvider />
+<MudPopoverProvider />
+
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
+
+<AuthorizeView>
+    <Authorized>
+        <div class="twelve">
+            <h1>@Localizer["MY TODOS"] 📝</h1>
+        </div>
+
+        @if (isLoading == true)
+        {
+            <p>@Localizer["Todos are loading..."]</p>
+        }
+        else if (todos == null)
+        {
+            <p>@Localizer["No todos found."]</p>
+        }
+        else if (todos.Count == 0)
+        {
+            <p>@Localizer["No todos found."]</p>
+        }
+        else
+        {
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>@Localizer["Todo"]</th>
+                            <th>@Localizer["Description"]</th>
+                            <th>@Localizer["Date"]</th>
+                            <th>@Localizer["Is Complete?"]</th>
+                            <th style="text-align: right;">@Localizer["Actions"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <Virtualize @ref="virtualizeComponent" Context="todo" ItemsProvider="@LoadTodos" OverscanCount="15">
+                            @if (todo.IsGrouped)
+                            {
+                                <tr class="header-row">
+                                    <td colspan="5"><strong>@todo.Title</strong></td>
+                                </tr>
+                            }
+                            else if (!todo.IsComplete)
+                            {
+                                <tr>
+                                    <td>@todo.Title</td>
+                                    <td>@todo.Description</td>
+                                    <td>@todo.Time.ToString("dd.MM.yyyy")</td>
+                                    <td>@(todo.IsComplete ? "✔️" : "❌")</td>
+                                    <td style="text-align: right;">
+                                        <button class="action-button" @onclick="() => OpenEditTodo(todo.Id)">✏️</button>
+                                        <button class="action-button" @onclick="() => UpdateTodoStatus(todo.Id, !todo.IsComplete)">✔️</button>
+                                    </td>
+                                </tr>
+                            }
+                        </Virtualize>
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        <button id="bottone6" @onclick="OpenAddTodo">➕</button>
+    </Authorized>
+    <NotAuthorized>
+        <p>@Localizer["Unauthorized"]<a href="authentication/login">@Localizer["Unauthorized2"]</a>.</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        isCompleteFilter = false;
+        await base.OnInitializedAsync();
+    }
+}

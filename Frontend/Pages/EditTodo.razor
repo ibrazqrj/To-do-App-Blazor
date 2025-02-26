@@ -1,0 +1,113 @@
+﻿@page "/edittodo/{id:int}"
+@inherits BaseTodoComponent
+@using BlazorToDoApp.Services
+@using Microsoft.Extensions.Localization
+@using BlazorToDoApp.Resources
+@inject ITodoService TodoService
+@inject NavigationManager Navigation
+@inject IStringLocalizer<Translation> Localizer
+@inject IJSRuntime JS
+@inject ISnackbar Snackbar
+
+@* Required *@
+<MudThemeProvider />
+<MudPopoverProvider />
+
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
+
+
+<div class="twelve">
+    <h1>@Localizer["EDIT TODO"] 🔧</h1>
+</div>
+
+@if (isLoading)
+{
+    <p>@Localizer["Loading todo..."]</p>
+}
+else if (todoItem == null)
+{
+    <p>@Localizer["Todo can't be found."]</p>
+}
+else
+{
+    <div class="cardcenter">
+    <div class="container">
+        <EditForm Model="todoItem" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="field">
+                <label for="title">
+                    <i class="far fa-user"></i> @Localizer["Title"]
+                </label>
+                <InputText id="title" @bind-Value="todoItem.Title" class="input-field" />
+                <ValidationMessage For="@(() => todoItem.Title)" />
+            </div>
+
+            <div class="field">
+                <label for="description">
+                    <i class="far fa-envelope"></i> @Localizer["Description"]
+                </label>
+                <InputTextArea id="description" @bind-Value="todoItem.Description" class="input-field" />
+                <ValidationMessage For="@(() => todoItem.Description)" />
+            </div>
+
+            <div class="field">
+                <label for="date">
+                    <i class="far fa-edit"></i> @Localizer["Date"]
+                </label>
+                <InputDate id="date" @bind-Value="todoItem.Time" class="input-field" />
+                <ValidationMessage For="@(() => todoItem.Time)" />
+            </div>
+
+            <div class="field checkbox-field">
+                <label for="isChecked">
+                    <i class="far fa-edit"></i> @Localizer["Is Complete?"]
+                </label>
+                <InputCheckbox id="isChecked" @bind-Value="todoItem.IsComplete" class="checkbox-input" />
+            </div>
+
+            <button type="submit" class="save-button">@Localizer["Save"]</button>
+        </EditForm>
+    </div>
+    </div>
+}
+
+@code {
+    [Parameter] public int id { get; set; }
+    private TodoItem? todoItem;
+    private bool isLoading = true; 
+
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = false;
+        todoItem = await TodoService.GetTodoByIdAsync(id);
+    }
+
+    private async Task HandleSubmit()
+    {
+        try {
+            if (todoItem != null)
+            {
+                var success = await TodoService.UpdateTodoAsync(todoItem);
+                if (success)
+                {
+                    Navigation.NavigateTo("/todos");
+                    Snackbar.Add(@Localizer["Successfully updated your todo!"], Severity.Success);
+                }
+                else
+                {
+                    Console.WriteLine("Failed to update task.");
+                }
+            }
+        }
+        catch (HttpRequestException)
+        {
+            Snackbar.Add(@Localizer["Connection failed"], Severity.Error);
+        }
+    }
+}

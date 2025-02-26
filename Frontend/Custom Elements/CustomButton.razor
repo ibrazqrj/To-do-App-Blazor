@@ -1,0 +1,10 @@
+﻿@inherits LayoutComponentBase
+<button data-ico="@Icon" @onclick="OnClick">
+    @Label
+</button>
+
+@code {
+    [Parameter] public string Label { get; set; } = "Create new Task";
+    [Parameter] public string Icon { get; set; } = "+";
+    [Parameter] public EventCallback OnClick { get; set; }
+}

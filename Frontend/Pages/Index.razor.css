@@ -1,0 +1,218 @@
+﻿body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+    padding: 0;
+    background: #eff9ff;
+    font-family: "Poppins", sans-serif;
+}
+
+.background {
+    position: fixed;
+    top: -50vmin;
+    left: -50vmin;
+    width: 100vmin;
+    height: 100vmin;
+    border-radius: 47% 53% 61% 39% / 45% 51% 49% 55%;
+    background: #f67685;
+    z-index: -1;
+}
+
+    .background::after {
+        content: "";
+        position: fixed;
+        right: -50vmin;
+        bottom: -55vmin;
+        width: 100vmin;
+        height: 100vmin;
+        border-radius: 47% 53% 61% 39% / 45% 51% 49% 55%;
+        background: #da2447;
+    }
+
+.card {
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    width: 400px;
+    max-width: 100%;
+    padding: 50px 30px;
+    border-radius: 24px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+}
+
+    .card .logo {
+        position: relative;
+        width: auto;
+        height: auto;
+        margin-bottom: -50px;
+        margin-top: -50px;
+    }
+
+    .card h2.welcome {
+        font-size: 30px;
+        font-weight: 400;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .card h6.welcome {
+        font-size: 15px;
+        font-weight: 400;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+    .form input {
+        width: 100%;
+        height: 50px;
+        padding: 0 15px;
+        border-radius: 25px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+        .form input::placeholder {
+            color: #aaa;
+        }
+
+    .form button {
+        width: 100%;
+        height: 50px;
+        border-radius: 25px;
+        border: none;
+        background-color: #ee455e;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+        .form button:hover {
+            background-color: #d93c53;
+        }
+
+.card footer {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.footer {
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+    .footer .text {
+        font-family: "Poppins", sans-serif;
+        color: #888888;
+        font-weight: 400; 
+        text-align: center;
+        font-size: 10px;
+        margin-top: 5px;
+    }
+
+    .footer .logo {
+        width: 70%;
+        height: 70%;
+        object-fit: cover;
+        border-radius: 26%;
+    }
+
+.dropdown {
+    position: relative;
+    width: 50px;
+    filter: url(#goo);
+    display: inline-block;
+}
+
+.dropdown__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+    .dropdown__icon svg {
+        width: 24px;
+        height: 24px;
+        fill: black;
+    }
+
+.dropdown__items {
+    position: absolute;
+    right: -25px;
+    top: 50px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    list-style: none;
+    padding: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+}
+
+    .dropdown__items li {
+        padding: 8px;
+        text-align: center;
+    }
+
+    .dropdown__items button {
+        background: none;
+        border: none;
+        color: black;
+        width: 100%;
+        cursor: pointer;
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+        .dropdown__items button:hover {
+            background: #f0f0f0;
+        }
+
+input[type="checkbox"] {
+    display: none;
+}
+
+    input[type="checkbox"]:checked ~ .dropdown__items {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.languagePosition {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    padding: 10px;
+    color: #fff;
+}
+
+    .languagePosition .text {
+        color: black;
+    }

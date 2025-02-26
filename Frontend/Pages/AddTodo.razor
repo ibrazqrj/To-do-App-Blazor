@@ -1,0 +1,87 @@
+﻿@page "/addtodo"
+@using BlazorToDoApp.Services
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Syncfusion.Blazor;
+@using MudBlazor;
+@inject ITodoService TodoService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@inject IStringLocalizer<Translation> Localizer
+@inject ISnackbar Snackbar
+@inject IAccessTokenProvider TokenProvider
+
+@* Required *@
+<MudThemeProvider />
+<MudPopoverProvider />
+
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
+
+<div class="twelve">
+    <h1>@Localizer["CREATE A NEW TODO"] 🧰</h1>
+</div>
+
+<div class="cardcenter">
+    <div class="container">
+        <EditForm Model="newTodo" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator />
+
+            <div class="field">
+                <label for="title"><i class="far fa-user"></i> @Localizer["Title"]</label>
+                <InputText @bind-Value="newTodo.Title" />
+                <ValidationMessage For="@(() => newTodo.Title)" />
+            </div>
+
+            <div class="field">
+                <label for="description"><i class="far fa-envelope"></i> @Localizer["Description"]</label>
+                <InputTextArea @bind-Value="newTodo.Description" />
+                <ValidationMessage For="@(() => newTodo.Description)" />
+            </div>
+
+            <div class="field">
+                <label for="date"><i class="far fa-edit"></i> @Localizer["Date"]</label>
+                <InputDate @bind-Value="newTodo.Time" />
+                <ValidationMessage For="@(() => newTodo.Time)" />
+            </div>
+
+            <button type="submit">@Localizer["Save"]</button>
+        </EditForm>
+    </div>
+    @errorMessage
+</div>
+
+
+
+@code {
+    private TodoItem newTodo = new TodoItem { IsComplete = false, Time = DateTime.Today };
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+
+    private async Task HandleSubmit()
+    {
+        try {
+            var success = await TodoService.CreateTodoAsync(newTodo);
+            if (success)
+            {
+                Navigation.NavigateTo("/todos");
+                Snackbar.Add(@Localizer["Successfully created your todo!"], Severity.Success);
+            }
+            else
+            {
+                Snackbar.Add(@Localizer["Something went wrong..."], Severity.Warning);
+            }
+        }
+        catch (HttpRequestException)
+        {
+            Snackbar.Add(@Localizer["Something went wrong... Please try again!"], Severity.Warning);
+            StateHasChanged();
+        }
+    }
+}

@@ -1,0 +1,98 @@
+﻿@page "/home"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.AspNetCore.Components.Authorization
+@using BlazorToDoApp.Services
+@using BlazorToDoApp.Resources
+@using Microsoft.Extensions.Localization
+@using Microsoft.Graph
+@using System.Net.Http.Headers
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IAccessTokenProvider TokenProvider
+@inject NavigationManager Navigation
+@inject IStringLocalizer<Translation> Localizer
+@inject IJSRuntime JS
+@inject HttpClient Http
+@inject ITodoService TodoService
+
+
+<AuthorizeView>
+    <Authorized>
+        <div class="twelve">
+            <h1>@Localizer["HEY THERE"] 👋</h1>
+        </div>
+        <div class="cardposition">
+            <div class="outer-div">
+                <div class="inner-div">
+                    <div class="front">
+                        <div class="front__bkg-photo"></div>
+                        <div class="front__face-photo" style="background-image: url('@(profilePicture ?? "https://static.vecteezy.com/system/resources/previews/035/192/016/non_2x/add-new-user-icon-male-person-profile-avatar-with-plus-symbol-add-user-profile-icon-free-vector.jpg")');"></div>
+                        <div class="front__text">
+                            <h3 class="front__text-header">@userName</h3>
+                            <p class="front__text-para">
+                                <i class="fas fa-map-marker-alt front-icons"></i>
+                                @userMail
+                            </p>
+                            <span class="front__text-hover">@Localizer["Hover for your statistics!"]</span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="social-media-wrapper">
+                            <h3 class="back__text-header">@Localizer["Active Todos"]</h3>
+                            <p class="back__text-para">
+                                @activeTodosCount
+                            </p>
+                            <h3 class="back__text-header">@Localizer["Todos in Recycle Bin"]</h3>
+                            <p class="back__text-para">
+                                @binTodosCount
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <p>@Localizer["Unauthorized"]<a href="authentication/login">@Localizer["Unauthorized2"]</a>.</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private string? userName;
+    private string? profilePicture;
+    private string? userMail;
+    private List<TodoItem> activeTodos = new();
+    private List<TodoItem> binTodos = new();
+    private bool isLoading = true;
+    private int activeTodosCount = 0;
+    private int binTodosCount = 0;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            activeTodosCount = await TodoService.GetTodoCount(completed: false) ?? 0;
+            binTodosCount = await TodoService.GetTodoCount(completed: true) ?? 0;
+
+            activeTodos = await TodoService.GetTodosAsync(0, 10, isCompleted: false);
+            binTodos = await TodoService.GetTodosAsync(0, 10, isCompleted: true);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Fehler beim Abrufen der Daten: {ex.Message}");
+        }
+
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity != null && user.Identity.IsAuthenticated)
+        {
+            userName = user.FindFirst(c => c.Type == "name")?.Value ?? "Benutzer";
+            userMail = user.FindFirst(c => c.Type == "preferred_username")?.Value ?? "no@email.available.com";
+        }
+        else
+        {
+            Console.WriteLine("Error while loading");
+        }
+    }
+}

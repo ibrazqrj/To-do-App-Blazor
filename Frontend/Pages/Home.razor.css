@@ -1,0 +1,428 @@
+﻿body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+    padding: 0;
+    background: #eff9ff;
+    font-family: "Poppins", sans-serif;
+}
+
+.background {
+    position: fixed;
+    top: -50vmin;
+    left: -50vmin;
+    width: 100vmin;
+    height: 100vmin;
+    border-radius: 47% 53% 61% 39% / 45% 51% 49% 55%;
+    background: #f67685;
+    z-index: -1;
+}
+
+    .background::after {
+        content: "";
+        position: fixed;
+        right: -50vmin;
+        bottom: -55vmin;
+        width: 100vmin;
+        height: 100vmin;
+        border-radius: 47% 53% 61% 39% / 45% 51% 49% 55%;
+        background: #da2447;
+    }
+
+.card {
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    width: 400px;
+    max-width: 100%;
+    padding: 50px 30px;
+    border-radius: 24px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+}
+
+    .card .logo {
+        position: relative;
+        width: auto;
+        height: auto;
+        margin-bottom: -50px;
+        margin-top: -50px;
+    }
+
+    .card h2.welcome {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+    .form input {
+        width: 100%;
+        height: 50px;
+        padding: 0 15px;
+        border-radius: 25px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+        .form input::placeholder {
+            color: #aaa;
+        }
+
+    .form button {
+        width: 100%;
+        height: 50px;
+        border-radius: 25px;
+        border: none;
+        background-color: #ee455e;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+        .form button:hover {
+            background-color: #d93c53;
+        }
+
+.card footer {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.footer {
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    width: 38%;
+    max-width: 100%;
+    border-radius: 24px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+}
+
+    .footer logo {
+        width: 156.5;
+        height: 202;
+    }
+
+html {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #bcdee7 url("../img/bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    position: fixed;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    font: normal 14px/1.618em "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.profile-card {
+    background: #FFB300;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+    z-index: 2;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 50px;
+    border-radius: 50%;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+    animation: init 0.5s 0.2s ease forwards, moveDown 1s 0.8s ease forwards, moveUp 1s 1.8s ease forwards, materia 0.5s 2.7s ease forwards;
+}
+
+@keyframes init {
+    0% {
+        width: 0px;
+        height: 0px;
+    }
+
+    100% {
+        width: 56px;
+        height: 56px;
+        margin-top: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes moveDown {
+    0% {
+        top: 50%;
+    }
+
+    50% {
+        top: 40%;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+@keyframes moveUp {
+    0% {
+        background: #FFB300;
+        top: 100%;
+    }
+
+    50% {
+        top: 40%;
+    }
+
+    100% {
+        top: 50%;
+        background: #E0E0E0;
+    }
+}
+
+@keyframes materia {
+    0% {
+        background: #E0E0E0;
+    }
+
+    50% {
+        border-radius: 4px;
+    }
+
+    100% {
+        width: 440px;
+        height: 280px;
+        background: #FFFFFF;
+        border-radius: 4px;
+    }
+}
+
+
+h1 {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+
+    h1 span {
+        display: block;
+        font-size: 0.5em;
+        line-height: 1.3;
+    }
+
+    h1 em {
+        font-style: normal;
+        font-weight: 600;
+    }
+
+.twelve h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 160px;
+    text-align: center;
+    margin: auto;
+    white-space: nowrap;
+    padding-bottom: 13px;
+}
+
+    .twelve h1:before {
+        background-color: #c50000;
+        content: '';
+        display: block;
+        height: 3px;
+        width: 75px;
+        margin-bottom: 5px;
+    }
+
+    .twelve h1:after {
+        background-color: #c50000;
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 3px;
+        width: 75px;
+        margin-bottom: 0.25em;
+    }
+.outer-div, .inner-div {
+    height: 450px;
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.outer-div {
+    perspective: 900px;
+}
+
+.inner-div {
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.8, -0.4, 0.2, 1.7);
+    transform-style: preserve-3d;
+}
+
+.outer-div:hover .inner-div {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+}
+
+.front {
+    cursor: pointer;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 15px 10px -3px rgba(0, 0, 0, 0.5);
+}
+
+.front__bkg-photo {
+    height: 150px;
+    background: url(https://wallpapers.com/images/hd/red-forest-ojbppcera71zeezt.jpg) 50% 53% / cover no-repeat;
+    background-size: cover;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.front__face-photo {
+    position: relative;
+    top: -60px;
+    height: 120px;
+    width: 120px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 5px solid white;
+    background-size: cover;
+}
+
+.front__text {
+    position: relative;
+    top: -55px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+}
+
+.front__text-header {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.front__text-para {
+    font-size: 14px;
+    color: gray;
+}
+
+.front__text-hover {
+    display: inline-block;
+    margin-top: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid tomato;
+    padding: 8px 15px;
+    border-radius: 30px;
+    border-color: #d82e4e;
+    background: #d82e4e;
+    color: white;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background-color: #d82e4e;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 10px -3px rgba(0, 0, 0, 0.5);
+}
+
+.social-media-wrapper {
+    font-size: 36px;
+}
+
+.social-icon {
+    margin: 0 5px;
+    color: white;
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+}
+
+.outer-div:hover .social-icon {
+    opacity: 1;
+}
+
+.cardposition {
+    height: 80vh;
+    place-content: center;
+}
+
+.back__text {
+    color: white;
+    position: relative;
+    top: -55px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+}
+
+.back__text-header {
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.back__text-para {
+    font-size: 14px;
+    color: white;
+}
+
+.back__text-hover {
+    display: inline-block;
+    margin-top: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid tomato;
+    padding: 8px 15px;
+    border-radius: 30px;
+    border-color: #d82e4e;
+    background: #d82e4e;
+    color: white;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
