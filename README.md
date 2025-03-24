@@ -1,110 +1,109 @@
-# BlazorToDoApp
+# 📝 BlazorToDoApp
 
-Eine **To-Do-Anwendung**, die mit **Blazor WebAssembly (WASM)** entwickelt wurde. Die App ermöglicht es, Aufgaben zu erstellen, zu bearbeiten, zu löschen und als erledigt zu markieren. Das Frontend kommuniziert mit einer **RESTful API** im Backend und nutzt **Azure AD für die Authentifizierung**.
+A **To-Do application** built with **Blazor WebAssembly (WASM)**. The app allows users to create, edit, delete, and mark tasks as completed. The frontend communicates with a **RESTful API** in the backend and utilizes **Azure AD for authentication**.
 
 ---
 
-## 🚀 Aktueller Stand
+## 🚀 Current Status
 
-- **Blazor WebAssembly (WASM) Frontend** zur Verwaltung von Aufgaben.
-- **Backend (RESTful API) ist bereits vorhanden** und verarbeitet CRUD-Operationen für Aufgaben.
-- **Microsoft Authentication Library (MSAL)** für Authentifizierung mit Azure AD.
-- **Infinite Scroll Paginierung**: Lädt dynamisch **10 neue Aufgaben** beim Scrollen.
-- **Papierkorb-Funktion** (Recycle Bin), um abgeschlossene Aufgaben zu verwalten.
-- **Mehrsprachigkeit**: Unterstützung für **Deutsch, Englisch, Französisch und Italienisch**.
+- **Blazor WebAssembly (WASM) Frontend** for task management.
+- **Backend (RESTful API) is fully implemented** and handles all CRUD operations.
+- **Microsoft Authentication Library (MSAL)** for authentication via Azure AD.
+- **Infinite Scroll Pagination**: Dynamically loads **10 new tasks** when scrolling.
+- **Recycle Bin Feature** to manage completed tasks.
+- **Multi-language support**: Supports **German, English, French, and Italian**.
 
 ---
 
 ## ✅ Features
 
-- **Aufgaben anzeigen** (von der API abgerufen).
-- **Aufgaben hinzufügen** (Titel, Beschreibung, Datum eingeben).
-- **Aufgaben bearbeiten** (Änderungen speichern).
-- **Aufgaben löschen** (entweder direkt oder in den Papierkorb verschieben).
-- **Aufgaben wiederherstellen** (Papierkorb-Funktion).
-- **Anzeige der Gesamtanzahl von Aufgaben** mit API-Headern `X-Total-Active-Count` und `X-Total-Bin-Count`.
-- **Paginierung mit Infinite Scroll** für eine nahtlose UX.
-- **Authentifizierung mit Microsoft Login (MSAL)**.
-- **Snackbars für Fehler- und Erfolgsbenachrichtigungen** (MudBlazor).
-- **Dynamischer Sprachwechsel** mit **Localization (.resx Files + LanguageService.cs)**.
+- **View tasks** (retrieved from the API).
+- **Add tasks** (enter title, description, and due date).
+- **Edit tasks** (save modifications).
+- **Delete tasks** (either permanently or move them to the recycle bin).
+- **Restore tasks** (from the recycle bin).
+- **Display total task count** using API headers `X-Total-Active-Count` and `X-Total-Bin-Count`.
+- **Infinite Scroll Pagination** for seamless UX.
+- **Authentication with Microsoft Login (MSAL)**.
+- **Snackbars for error and success notifications** (MudBlazor).
+- **Dynamic language switching** using **Localization (.resx Files + LanguageService.cs)**.
 
 ---
 
-## 🔧 Tech-Stack
+## 🔧 Tech Stack
 
 ### 🌍 Frontend
 - **Blazor WebAssembly (.NET 9)**
-- **MudBlazor** (UI-Komponenten)
-- **Syncfusion Blazor** (Eingabe- und UI-Komponenten)
-- **MSAL (Microsoft Authentication Library)** für OAuth 2.0 Login
-- **HttpClient** für API-Kommunikation
-- **Virtualize-Komponente** für optimierte Listen-Darstellung
-- **Bootstrap & CSS für das Design**
+- **MudBlazor** (UI components)
+- **Syncfusion Blazor** (input & UI components)
+- **MSAL (Microsoft Authentication Library)** for OAuth 2.0 login
+- **HttpClient** for API communication
+- **Virtualize component** for optimized list rendering
+- **Bootstrap & CSS for styling**
 
 ### 🖥️ Backend
 - **.NET Core Web API (C#)**
-- **Entity Framework Core** für die Datenbank-Kommunikation
+- **Entity Framework Core** for database communication
 - **Microsoft SQL Server**
-- **Azure Active Directory (AD) für Authentifizierung**
+- **Azure Active Directory (AD) for authentication**
 
-### 🔗 Netzwerk & Tools
-- **Swagger** für API-Dokumentation
-- **Azure Portal & Azure DevOps** für Deployment
-- **Postman** für API-Testing
-
----
-
-## 🌐 API-Endpunkte
-
-| Methode | Endpunkt             | Beschreibung                               |
-|---------|----------------------|-------------------------------------------|
-| GET     | `/api/todo`          | Alle Aufgaben abrufen                     |
-| GET     | `/api/todo?completed=true` | Nur erledigte Aufgaben abrufen (Papierkorb) |
-| POST    | `/api/todo`          | Neue Aufgabe hinzufügen                   |
-| PUT   | `/api/todo/{id}`     | Aufgabe aktualisieren                     |
-| DELETE  | `/api/todo/{id}`     | Aufgabe löschen                           |
+### 🔗 Networking & Tools
+- **Swagger** for API documentation
+- **Azure Portal & Azure DevOps** for deployment
+- **Postman** for API testing
 
 ---
 
-## 📌 Installation & Nutzung
+## 🌐 API Endpoints
 
-### 🚀 Voraussetzungen
-- **.NET 7 SDK** installiert ([Download hier](https://dotnet.microsoft.com/en-us/download/dotnet/7.0))
-- **Visual Studio 2022** oder eine andere IDE mit .NET-Unterstützung
-- **Ein registriertes Azure AD-Konto** für MSAL-Login
-- **Microsoft SQL Server** für die Datenbank
+| Method | Endpoint                  | Description                              |
+|--------|---------------------------|------------------------------------------|
+| GET    | `/api/todo`                | Retrieve all tasks                      |
+| GET    | `/api/todo?completed=true` | Retrieve only completed tasks (Recycle Bin) |
+| POST   | `/api/todo`                | Add a new task                          |
+| PUT    | `/api/todo/{id}`           | Update a task                           |
+| DELETE | `/api/todo/{id}`           | Delete a task                           |
 
-### 📥 **Projekt klonen & starten**
+---
+
+## 📌 Installation & Usage
+
+### 🚀 Requirements
+- **.NET 7 SDK** installed ([Download here](https://dotnet.microsoft.com/en-us/download/dotnet/7.0))
+- **Visual Studio 2022** or another .NET-supported IDE
+- **A registered Azure AD account** for MSAL login
+- **Microsoft SQL Server** for database management
+
+### 📥 **Clone & Start the Project**
 ```sh
-# Repository klonen
-git clone https://github.com/dein-repository/BlazorToDoApp.git
+# Clone the repository
+git clone https://github.com/your-repository/BlazorToDoApp.git
 cd BlazorToDoApp
 ```
 
-### 🖥️ **Backend starten**
+### 🖥️ **Start the Backend**
 ```sh
 cd BlazorToDoApp.API
-# API starten
+# Start the API
 dotnet run
 ```
-➡ **API läuft auf:** `http://localhost:5085`
+➡ **API running at:** `http://localhost:5085`
 
-### 🌍 **Frontend starten**
+### 🌍 **Start the Frontend**
 ```sh
 cd BlazorToDoApp.Client
-# Abhängigkeiten installieren
+# Install dependencies
 npm install
-# Blazor starten
+# Start Blazor
 dotnet run
 ```
-➡ **Web-App läuft auf:** `https://localhost:7032`
+➡ **Web app running at:** `https://localhost:7032`
 
 ---
 
-## 👥 Mitwirkende
+## 👥 Contributors
 
-- **Ibrahim Zeqiraj** - Entwicklung
+- **Ibrahim Zeqiraj** - Development  
 [GitHub](https://github.com/ibrazqrj)
 
 ---
-
